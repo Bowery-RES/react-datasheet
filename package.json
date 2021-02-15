@@ -1,5 +1,5 @@
 {
-  "name": "react-datasheet",
+  "name": "@bowery-valuation/react-datasheet",
   "version": "1.4.3",
   "description": "Excel-like data grid for React",
   "repository": {
@@ -19,7 +19,7 @@
     "lint": "eslint ./src",
     "lintfix": "eslint ./src --fix",
     "clean": "rimraf dist",
-    "build": "babel ./src  --out-dir ./lib && cp src/react-datasheet.css lib",
+    "build": "babel ./src  --out-dir ./lib && @powershell copy src/react-datasheet.css lib",
     "build:watch": "watch 'npm run build' ./src",
     "prepublish": "npm run build",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
