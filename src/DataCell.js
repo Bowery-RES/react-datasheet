@@ -169,6 +169,7 @@ export default class DataCell extends PureComponent {
           cell={cell}
           row={row}
           col={col}
+          clearing={this.props.clearing}
           value={this.getEditValue()}
           onChange={this.handleChange}
           onCommit={this.handleCommit}
