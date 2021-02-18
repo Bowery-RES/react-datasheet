@@ -206,6 +206,8 @@ declare namespace ReactDataSheet {
         cell: T;
         /** A bool that indicates whether a cell value has to be cleared before entering the edit mode */
         clearing: boolean,
+        /** The key has been pressed to enter edit mode */
+        pressedKey?: string, 
         /** A callback for when the user changes the value during editing (for example, each time they type a character into an input). onChange does not indicate the final edited value. It works just like a controlled component in a form. */
         onChange: (newValue: V) => void;
         /** An event handler that you can call to use default React-DataSheet keyboard handling to signal reverting an ongoing edit (Escape key) or completing an edit (Enter or Tab). For most editors based on an input element this will probably work. However, if this keyboard handling is unsuitable for your editor you can trigger these changes explicitly using the onCommit and onRevert callbacks. */

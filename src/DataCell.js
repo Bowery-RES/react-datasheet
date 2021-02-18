@@ -161,7 +161,7 @@ export default class DataCell extends PureComponent {
     }
   };
 
-  renderEditor = (editing, cell, row, col, dataEditor) => {
+  renderEditor = (editing, cell, row, col, dataEditor, pressedKey) => {
     if (editing) {
       const Editor = cell.dataEditor || dataEditor || DataEditor;
       return (
@@ -169,6 +169,7 @@ export default class DataCell extends PureComponent {
           cell={cell}
           row={row}
           col={col}
+          pressedKey={pressedKey}
           clearing={this.props.clearing}
           value={this.getEditValue()}
           onChange={this.handleChange}
@@ -194,10 +195,11 @@ export default class DataCell extends PureComponent {
     dataEditor,
     valueRenderer,
     valueViewer,
+    pressedKey,
   ) => {
     return (
       this.renderComponent(editing, cell) ||
-      this.renderEditor(editing, cell, row, col, dataEditor) ||
+      this.renderEditor(editing, cell, row, col, dataEditor, pressedKey) ||
       this.renderViewer(cell, row, col, valueRenderer, valueViewer)
     );
   };
@@ -217,6 +219,7 @@ export default class DataCell extends PureComponent {
       selected,
       editing,
       onKeyUp,
+      pressedKey,
     } = this.props;
     const { updated } = this.state;
     const contentRenderer = editing
@@ -230,6 +233,7 @@ export default class DataCell extends PureComponent {
       dataEditor,
       valueRenderer,
       valueViewer,
+      pressedKey,
     );
 
     const className = [
@@ -291,6 +295,7 @@ DataCell.propTypes = {
   onChange: PropTypes.func.isRequired,
   onRevert: PropTypes.func.isRequired,
   onEdit: PropTypes.func,
+  pressedKey: PropTypes.string
 };
 
 DataCell.defaultProps = {
