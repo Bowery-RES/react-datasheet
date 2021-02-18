@@ -653,9 +653,8 @@ export default class DataSheet extends PureComponent {
       overflow,
       data,
       keyFn,
-      pressedKey,
     } = this.props;
-    const { forceEdit } = this.state;
+    const { forceEdit, pressedKey } = this.state;
     if (this.isRowEditing(i)) {
       this.memoizedRenderRow.delete(row, i);
     }
