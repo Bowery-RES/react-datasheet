@@ -342,6 +342,7 @@ export default class DataSheet extends PureComponent {
           equationKeysPressed
         ) {
           // empty out cell if user starts typing without pressing enter
+          e.preventDefault();
           this._setState({ editing: start, pressedKey: e.key, clear: start, forceEdit: false });
         }
       }
