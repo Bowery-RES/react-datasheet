@@ -67,6 +67,7 @@ export default class DataSheet extends PureComponent {
       forceEdit: false,
       editing: {},
       clear: {},
+      pressedKey: null,
     };
     this.state = this.defaultState;
 
@@ -341,7 +342,8 @@ export default class DataSheet extends PureComponent {
           equationKeysPressed
         ) {
           // empty out cell if user starts typing without pressing enter
-          this._setState({ editing: start, clear: start, forceEdit: false });
+          e.preventDefault();
+          this._setState({ editing: start, pressedKey: e.key, clear: start, forceEdit: false });
         }
       }
     }
@@ -384,6 +386,7 @@ export default class DataSheet extends PureComponent {
       start: location,
       end: location,
       editing: {},
+      pressedKey: null,
     });
   }
 
@@ -399,6 +402,7 @@ export default class DataSheet extends PureComponent {
       start: oldStartLocation,
       end: newEndLocation,
       editing: {},
+      pressedKey: null,
     });
   }
 
@@ -592,7 +596,7 @@ export default class DataSheet extends PureComponent {
   }
 
   onRevert() {
-    this._setState({ editing: {} });
+    this._setState({ editing: {}, pressedKey: null });
     this.dgDom && this.dgDom.focus();
   }
 
@@ -651,7 +655,7 @@ export default class DataSheet extends PureComponent {
       data,
       keyFn,
     } = this.props;
-    const { forceEdit } = this.state;
+    const { forceEdit, pressedKey } = this.state;
     if (this.isRowEditing(i)) {
       this.memoizedRenderRow.delete(row, i);
     }
@@ -676,6 +680,7 @@ export default class DataSheet extends PureComponent {
               onNavigate={this.handleKeyboardCellMovement}
               onKey={this.handleKey}
               selected={this.isSelected(i, j)}
+              pressedKey={pressedKey}
               editing={isEditing}
               clearing={this.isClearing(i, j)}
               attributesRenderer={attributesRenderer}
